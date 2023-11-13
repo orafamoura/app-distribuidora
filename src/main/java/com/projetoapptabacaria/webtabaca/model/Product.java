@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private String name;
@@ -16,7 +16,7 @@ public class Product {
 
     private Double value;
 
-    private Long description;
+    private String description;
 
     public Long getId() {
         return id;
@@ -50,11 +50,11 @@ public class Product {
         this.value = value;
     }
 
-    public Long getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(Long description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 }
