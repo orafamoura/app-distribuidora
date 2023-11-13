@@ -2,6 +2,7 @@ package com.projetoapptabacaria.webtabaca.services;
 
 import com.projetoapptabacaria.webtabaca.mapper.ProductMapper;
 import com.projetoapptabacaria.webtabaca.model.Product;
+import com.projetoapptabacaria.webtabaca.model.exception.ResourceNotFoundException;
 import com.projetoapptabacaria.webtabaca.repositories.ProductRepository;
 import com.projetoapptabacaria.webtabaca.shared.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+   @Autowired
     private ProductMapper productMapper;
 
 
@@ -43,7 +45,7 @@ public class ProductService {
         Optional<Product> product = productRepository.findById(id);
         //exception
         if (product.isEmpty()) {
-            return null;
+            throw new ResourceNotFoundException("Product not found!");
         }
         //Convertendo optional product em productDTO
         ProductDTO dto = productMapper.productToProductDto(product.get()); // coloca o .get por ser um optional
@@ -58,14 +60,16 @@ public class ProductService {
      * @return produto que foi adicionado na lista.
      */
     public ProductDTO addProduct(ProductDTO productDto) {
+
         //converter o Dto em product
         Product product = productMapper.toProduct(productDto);
 
         //salvar no banco
         product = productRepository.save(product);
 
+
         return productDto;
-    }  // talvez tenha que voltar para colocar o ID
+    }
 
     /**
      * Metodo para deletar um produto na lista.
@@ -74,9 +78,9 @@ public class ProductService {
      */
     public void deleteProduct(Long id) {
         //verificar se o produto existe
-        Optional<Product> product = productRepository.findById(id);
+       Optional<Product> product = productRepository.findById(id);
         if (product.isEmpty()) {
-            throw null;
+            throw new ResourceNotFoundException("Delete is not possible product with id: " + id + " product not exist");
         }
         productRepository.deleteById(id);
     }
@@ -87,20 +91,23 @@ public class ProductService {
      * @param productDto que sera atualizado.
      * @return produto atualizado.
      */
+
     public ProductDTO updateProduct(Long id, ProductDTO productDto) {
-        //converter o dto em product
+        // Converter o DTO em produto
         Optional<Product> existingProductOptional = productRepository.findById(id);
         if (existingProductOptional.isPresent()) {
             Product existingProduct = existingProductOptional.get();
 
             productMapper.updateProductFromDto(productDto, existingProduct);
 
-            productRepository.save(existingProduct);
+            // Salvar o produto atualizado no banco de dados
+            Product updatedProduct = productRepository.save(existingProduct);
 
-            return productDto;
-
+            // Converter o produto atualizado de volta para DTO e retornar
+            return productMapper.productToProductDto(updatedProduct);
         } else {
-            return null;
+            throw new ResourceNotFoundException("Product not exist!");
         }
     }
+
 }
