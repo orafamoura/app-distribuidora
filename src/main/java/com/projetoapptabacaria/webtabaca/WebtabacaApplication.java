@@ -9,5 +9,4 @@ public class WebtabacaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WebtabacaApplication.class, args);
 	}
-
 }
