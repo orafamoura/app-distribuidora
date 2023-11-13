@@ -11,7 +11,7 @@ public class ProductDTO {
 
     private Double value;
 
-    private Long description;
+    private String description;
 
     public String getName() {
         return name;
@@ -37,14 +37,11 @@ public class ProductDTO {
         this.value = value;
     }
 
-    public Long getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(Long description) {
+    public void setDescription(String description) {
         this.description = description;
     }
-
-
-
 }
