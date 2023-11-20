@@ -1,5 +1,6 @@
 package com.projetoapptabacaria.webtabaca.model;
 
+import com.projetoapptabacaria.webtabaca.repositories.UserRepository;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,8 @@ public class User {
     private String username;
 
     private Long password;
+
+    private Long email;
 
     public Long getId() {
         return id;
@@ -36,5 +39,13 @@ public class User {
 
     public void setPassword(Long password) {
         this.password = password;
+    }
+
+    public Long getEmail() {
+        return email;
+    }
+
+    public void setEmail(Long email) {
+        this.email = email;
     }
 }
