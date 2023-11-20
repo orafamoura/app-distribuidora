@@ -2,8 +2,8 @@ package com.projetoapptabacaria.webtabaca.mapper;
 
 import com.projetoapptabacaria.webtabaca.model.Product;
 import com.projetoapptabacaria.webtabaca.shared.ProductDTO;
-import com.projetoapptabacaria.webtabaca.view.controller.model.ProductRequest;
-import com.projetoapptabacaria.webtabaca.view.controller.model.ProductResponse;
+import com.projetoapptabacaria.webtabaca.view.controller.model.product.ProductRequest;
+import com.projetoapptabacaria.webtabaca.view.controller.model.product.ProductResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
