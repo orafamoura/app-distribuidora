@@ -1,12 +1,21 @@
-package com.projetoapptabacaria.webtabaca.view.controller.model;
+package com.projetoapptabacaria.webtabaca.view.controller.model.product;
 
-public class ProductRequest {  //vai ser o tipo de dado que eu espero receber fazendo uma requisicao pro back end
-    // como se eu estivesse cadastrando o produto, excluimos o id pois ele e gerado automaticamente
+public class ProductResponse {//resposta do Product Request, o que vou devolver
+
+   // private Long id;
     private String name;
     private Long quantity;
     private Double value;
     private String description;
 
+    /*public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+*/
     public String getName() {
         return name;
     }
