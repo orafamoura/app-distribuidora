@@ -2,11 +2,10 @@ package com.projetoapptabacaria.webtabaca.view.controller;
 
 
 import com.projetoapptabacaria.webtabaca.mapper.ProductMapper;
-import com.projetoapptabacaria.webtabaca.model.Product;
 import com.projetoapptabacaria.webtabaca.services.ProductService;
 import com.projetoapptabacaria.webtabaca.shared.ProductDTO;
-import com.projetoapptabacaria.webtabaca.view.controller.model.ProductRequest;
-import com.projetoapptabacaria.webtabaca.view.controller.model.ProductResponse;
+import com.projetoapptabacaria.webtabaca.view.controller.model.product.ProductRequest;
+import com.projetoapptabacaria.webtabaca.view.controller.model.product.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
