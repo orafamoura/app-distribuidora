@@ -1,4 +1,4 @@
-package com.projetoapptabacaria.webtabaca.model;
+package com.projetoapptabacaria.webtabaca.model.product;
 
 import jakarta.persistence.*;
 
