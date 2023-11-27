@@ -1,6 +1,6 @@
 package com.projetoapptabacaria.webtabaca.repositories;
 
-import com.projetoapptabacaria.webtabaca.model.Product;
+import com.projetoapptabacaria.webtabaca.model.product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

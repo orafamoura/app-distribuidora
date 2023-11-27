@@ -1,7 +1,7 @@
 package com.projetoapptabacaria.webtabaca.services;
 
 import com.projetoapptabacaria.webtabaca.mapper.UserMapper;
-import com.projetoapptabacaria.webtabaca.model.User;
+import com.projetoapptabacaria.webtabaca.model.user.User;
 import com.projetoapptabacaria.webtabaca.model.exception.ResourceNotFoundException;
 import com.projetoapptabacaria.webtabaca.repositories.UserRepository;
 import com.projetoapptabacaria.webtabaca.shared.UserDTO;
@@ -41,7 +41,7 @@ public class UserService {
      * @param id do usuario que sera localizado.
      * @return usuario caso seja encontrado.
      */
-    public Optional<UserDTO> findById(Long id){
+    public Optional<UserDTO> findById(String id){
         Optional<User> users = userRepository.findById(id);
         //exception
         if (users.isEmpty()) {
@@ -74,7 +74,7 @@ public class UserService {
      *
      * @param id que sera deletado.
      */
-    public void deleteUser(Long id) {
+    public void deleteUser(String id) {
         //verificar se o produto existe
         Optional<User> users = userRepository.findById(id);
         if (users.isEmpty()) {
@@ -90,7 +90,7 @@ public class UserService {
      * @return produto atualizado.
      */
 
-    public UserDTO updateUser(Long id, UserDTO UserDTO) {
+    public UserDTO updateUser(String id, UserDTO UserDTO) {
         // Converter o DTO em usuario
         Optional<User> existingUserOptional = userRepository.findById(id);
         if (existingUserOptional.isPresent()) {

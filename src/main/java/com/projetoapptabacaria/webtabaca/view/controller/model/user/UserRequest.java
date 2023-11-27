@@ -1,33 +1,33 @@
 package com.projetoapptabacaria.webtabaca.view.controller.model.user;
 
 public class UserRequest {
-    private String username;
+    private String login;
 
-    private Long password;
+    private String password;
 
-    private Long email;
+    private String email;
 
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    public Long getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(Long password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public Long getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Long email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 }

@@ -36,7 +36,7 @@ public class UserController {
         }
 
         @GetMapping("/{id}")
-        public ResponseEntity<Optional<UserResponse>> findById(@PathVariable Long id){
+        public ResponseEntity<Optional<UserResponse>> findById(@PathVariable String id){
             //obtendo user pelo id
             Optional<UserDTO> users = userService.findById(id);
 
@@ -62,13 +62,13 @@ public class UserController {
         }
 
         @DeleteMapping("/{id}")
-        public ResponseEntity<?> deleteUser(@PathVariable Long id){
+        public ResponseEntity<?> deleteUser(@PathVariable String id){
             userService.deleteUser(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
         @PutMapping("/{id}")
-        public ResponseEntity<UserResponse> updateUser(@RequestBody UserRequest userReq, @PathVariable Long id){ //request body pra converter o JSON em product
+        public ResponseEntity<UserResponse> updateUser(@RequestBody UserRequest userReq, @PathVariable String id){ //request body pra converter o JSON em product
             UserDTO UserDTO = userMapper.userRequestToUserDTO(userReq);
 
             UserDTO = userService.updateUser(id, UserDTO);

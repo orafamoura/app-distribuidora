@@ -1,7 +1,7 @@
 package com.projetoapptabacaria.webtabaca.services;
 
 import com.projetoapptabacaria.webtabaca.mapper.ProductMapper;
-import com.projetoapptabacaria.webtabaca.model.Product;
+import com.projetoapptabacaria.webtabaca.model.product.Product;
 import com.projetoapptabacaria.webtabaca.model.exception.ResourceNotFoundException;
 import com.projetoapptabacaria.webtabaca.repositories.ProductRepository;
 import com.projetoapptabacaria.webtabaca.shared.ProductDTO;

@@ -1,6 +1,6 @@
 package com.projetoapptabacaria.webtabaca.mapper;
 
-import com.projetoapptabacaria.webtabaca.model.Product;
+import com.projetoapptabacaria.webtabaca.model.product.Product;
 import com.projetoapptabacaria.webtabaca.shared.ProductDTO;
 import com.projetoapptabacaria.webtabaca.view.controller.model.product.ProductRequest;
 import com.projetoapptabacaria.webtabaca.view.controller.model.product.ProductResponse;
@@ -15,8 +15,6 @@ public interface ProductMapper {
 
     //@mapping(source = "nome1", target = "nome2") se o nome em alguma conversao estiver diferente para ele fazer a associacao
     ProductDTO productToProductDto(Product product);
-
-    List<ProductDTO> toProductDTOs(List<Product> products);
 
     Product toProduct(ProductDTO productDTO);
 
