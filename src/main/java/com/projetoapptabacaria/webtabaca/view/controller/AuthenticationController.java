@@ -1,6 +1,8 @@
 package com.projetoapptabacaria.webtabaca.view.controller;
 
+import com.projetoapptabacaria.webtabaca.infra.security.TokenService;
 import com.projetoapptabacaria.webtabaca.model.user.AuthenticationDTO;
+import com.projetoapptabacaria.webtabaca.model.user.LoginResponseDTO;
 import com.projetoapptabacaria.webtabaca.model.user.RegisterDTO;
 import com.projetoapptabacaria.webtabaca.model.user.User;
 import com.projetoapptabacaria.webtabaca.repositories.UserRepository;
@@ -24,27 +26,36 @@ public class AuthenticationController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    TokenService tokenService;
+
     /**
      * metodo de login do usuario
      */
-    @PostMapping("/login") //nao e uma boa pratica salvar a senha como string, tem que ser no formato hash, criptografado
-    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
+    @PostMapping("/login")
+    //nao e uma boa pratica salvar a senha como string, tem que ser no formato hash, criptografado
+    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
+        try {
+            var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
+            var auth = this.authenticationManager.authenticate(usernamePassword);
 
-        var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
-        System.out.println(usernamePassword.toString());
-        var auth = this.authenticationManager.authenticate(usernamePassword);
-        System.out.println(auth);
-        System.out.println(usernamePassword.toString());
+            var token = tokenService.generateToken((User) auth.getPrincipal());
+            return ResponseEntity.ok(new LoginResponseDTO(token));
+        } catch (Exception e) {
+           // String message = tratadorDeErros.tratar(e); //tratar depois
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
 
-        return ResponseEntity.ok().build();
     }
 
     /**
      * Metodo para registro do usuario
      */
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid RegisterDTO data){
-        if(this.userRepository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build(); // se login for diferente de nulo, bad request
+    public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
+        try {
+        if (this.userRepository.findByLogin(data.login()) != null)
+            return ResponseEntity.badRequest().build(); // se login for diferente de nulo, bad request
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
         User newUser = new User(data.login(), encryptedPassword, data.role(), data.email());
@@ -52,5 +63,9 @@ public class AuthenticationController {
         this.userRepository.save(newUser);
 
         return ResponseEntity.ok().build();
+
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }
