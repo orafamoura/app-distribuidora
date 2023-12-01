@@ -26,10 +26,12 @@ public class User implements UserDetails { //UserDetails Maneira personalizada d
     @Column(nullable = false)
     private UserRole role;
 
+    @Column(nullable = false)
     private String email;
 
     public User(){
     }
+
     public User(String login, String password, UserRole role, String email){
         this.login = login;
         this.password = password;
